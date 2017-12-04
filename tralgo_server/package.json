@@ -1,0 +1,21 @@
+{
+  "name": "tralgo-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "migrate": "sequelize db:seed:undo:all --debug; sequelize db:migrate:undo:all --debug; sequelize db:migrate sequelize --debug; sequelize db:seed:all --debug"
+  },
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "kue": "^0.11.6",
+    "morgan": "~1.8.1",
+    "pg": "^7.0.2",
+    "sequelize": "^4.4.2",
+    "serve-favicon": "~2.4.2"
+  }
+}

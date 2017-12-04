@@ -1,0 +1,25 @@
+.marker {
+    background-color: black;
+    border-radius: 50%;
+}
+
+.marker-active {
+    background-color: blue;
+}
+
+.marker-start {
+    background-color: green;
+}
+
+.marker-end {
+    background-color: red;
+}
+
+.marker-start-end {
+    overflow: hidden;
+}
+.marker-start-end > .half-circle {
+    float: left;
+    height: 100%;
+    width: 50%;
+}

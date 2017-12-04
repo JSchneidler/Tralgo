@@ -1,0 +1,31 @@
+// Place actions
+export const SET_PLACE = 'SET_PLACE';
+export const LOAD_PLACE = 'LOAD_PLACE';
+export const LOAD_PLACE_SUCCESS = 'LOAD_PLACE_SUCCESS';
+export const LOAD_PLACE_FAIL = 'LOAD_PLACE_FAIL';
+export const CLEAR_PLACE = 'CLEAR_PLACE';
+export const UPDATE_PLACE_PROPERTY = 'UPDATE_PLACE_PROPERTY';
+export const UPDATE_PLACE_CENTER = 'UPDATE_PLACE_CENTER';
+export const UPDATE_PLACE_NODE = 'UPDATE_PLACE_NODE';
+export const UPDATE_EDGE_POLYLINE = 'UPDATE_EDGE_POLYLINE';
+export const ADD_PLACE_NODE = 'ADD_PLACE_NODE';
+export const ADD_PLACE_NODE_SUCCESS = 'ADD_PLACE_NODE_SUCCESS';
+export const ADD_PLACE_NODE_FAIL = 'ADD_PLACE_NODE_FAIL';
+
+// Path actions
+export const LOAD_PATH = 'LOAD_PATH';
+export const LOAD_PATH_SUCCESS = 'LOAD_PATH_SUCCESS';
+export const LOAD_PATH_FAIL = 'LOAD_PATH_FAIL';
+
+// Editor actions
+export const CREATE_NEW_PLACE = 'CREATE_NEW_PLACE';
+export const CANCEL_EDIT_PLACE = 'CANCEL_EDIT_PLACE';
+export const EDIT_PLACE = 'EDIT_PLACE';
+export const SAVE_PLACE = 'SAVE_PLACE';
+export const SAVE_PLACE_SUCCESS = 'SAVE_PLACE_SUCCESS';
+export const SAVE_PLACE_FAIL = 'SAVE_PLACE_FAIL';
+export const CHANGE_EDITOR_VIEW = 'CHANGE_EDITOR_VIEW';
+
+// Map actions
+export const SET_MAP_ZOOM = 'SET_MAP_ZOOM';
+export const SET_MAP_CENTER = 'SET_MAP_CENTER';
