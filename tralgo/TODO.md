@@ -17,3 +17,4 @@ High Priority
 * Editor to create new places [In Progress]
 * Get UI looking decent
 * Find new folder structure?
+* Support CRUD for places (R,U done)

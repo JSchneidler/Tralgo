@@ -1,10 +1,11 @@
 import * as types from 'constants/actionTypes';
-import { merge, findKey } from 'lodash';
+import { merge, findIndex } from 'lodash';
 
 export default (state = null, action={}) => {
 	switch(action.type) {
 		case types.SET_PLACE:
 			action.place.updates = {
+				id: action.place.id || null,
 				Edges: [],
 				Points: [],
 			};
@@ -31,7 +32,7 @@ export default (state = null, action={}) => {
 		let node = {
 			id: action.node.id,
 			name: action.node.name,
-			coordinates: [action.node.coordinates[0], action.node.coordinates[1]],
+			coordinates: action.node.coordinates,
 		};
 
 		if (!place[nodeType]) place[nodeType] = [node];
@@ -49,6 +50,7 @@ export default (state = null, action={}) => {
 	function updatePlaceCenter() {
 		let place = {...state};
 		let index = action.latOrLng === 'latitude' ? 0 : 1;
+		if (!place.coordinates) place.coordinates = [];
 		place.coordinates[index] = action.value;
 
 		if (!place.updates.coordinates) place.updates.coordinates = [];
@@ -75,9 +77,9 @@ export default (state = null, action={}) => {
 
 		let index = findIndexById(place.updates[nodeType], action.nodeId);
 
-		if (!index) place.updates[nodeType].push({
+		if (index < 0) index = place.updates[nodeType].push({
 			id: action.nodeId,
-		});
+		})-1; // Push returns new length, we want last index
 		merge(place.updates[nodeType][index], update);
 
 		return place;
@@ -104,7 +106,7 @@ export default (state = null, action={}) => {
 }
 
 function findIndexById(nodes, id) {
-	return findKey(nodes, o => {
+	return findIndex(nodes, o => {
 		return o.id === id;
 	});
 }

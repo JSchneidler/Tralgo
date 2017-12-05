@@ -2,14 +2,11 @@
 
 ## About (TODO)
 
-## Setup (TODO)
+## Setup
 1. Install Postgres
-2. Install PostGIS
-3. Create database
-4. Add PostGIS extension to database
-5. Install Redis Server
-
-## Todo
-* Add Flow.js static typechecking
-* Get MVP working
-* Connect MVP to database
+2. Install Redis Server
+3. Create Postgres databases - `tralgo_dev`, `tralgo_test`, `tralgo_prod`
+4. Ensure Postgres authentication matches `src/db/config.js`
+5. `npm run migrate` to run migrations
+6. `redis-server` to start Redis server
+7. `npm start` to start server

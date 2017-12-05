@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 const models = require('db');
 const Place = models.Place;
+const Point = models.Point;
+const Edge = models.Edge;
 
 router.get('/', (req, res) => {
   Place.findAll({attributes: ['id', 'name']})
@@ -12,11 +14,19 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   if (req.body.id) {
     // TODO: Update place, not working with associated data
-    Place.findById(req.body.id).then(place => {
-      place.update(req.body).then(res.success).catch(res.failure);
-    }).catch(res.failure);
+    Place.findById(req.body.id)
+      .then(place => {
+        return place.update(req.body);
+      })
+      .then(updatePoints)
+      //.then(updateEdges)
+      .then(res.success)
+      .catch(res.failure);
   } else {
-    // TODO: Create place
+    console.log(req.body);
+    Place.create(req.body, {include: [Point, Edge]}) // TODO: Create place
+      .then(res.success)
+      .catch(res.failure);
   }
   /*
   Place.create({
@@ -35,6 +45,21 @@ router.post('/', (req, res) => {
 	.then(res.success)
   .catch(res.failure);
   */
+
+  function updatePoints() {
+    if (req.body.Points) return Promise.all(req.body.Points.map(pointUpdate => {
+      return Point.findById(pointUpdate.id).then(point => {
+        return point.update(pointUpdate);
+      });
+    })); else return Promise.resolve();
+  }
+  function updateEdges() {
+    if (req.body.Edges) return Promise.all(req.body.Edges.map(edgeUpdate => {
+      return Edge.findById(edgeUpdate.id).then(edge => {
+        return edge.update(edgeUpdate);
+      });
+    })); else return Promise.resolve();
+  }
 });
 
 router.get('/:placeId', (req, res) => {
@@ -59,10 +84,7 @@ router.post('/:placeId/addNode', (req, res) => {
     if (nodeType === 'point') place.createPoint({
       name: node.name,
       type: node.trailhead ? 'Trailhead' : 'Junction',
-      geometry: {
-        type: 'Point',
-        coordinates: [node.lat, node.lng],
-      },
+      coordinates: [node.lat, node.lng],
     }).then(res.success).catch(res.failure);
     else if (nodeType === 'edge') place.createEdge({
       name: node.name,

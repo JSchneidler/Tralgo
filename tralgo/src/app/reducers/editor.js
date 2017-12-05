@@ -13,11 +13,9 @@ export default (state = initialState, action={}) => {
                 ...state,
                 creating: true,
             };
-        case types.CANCEL_EDIT_PLACE:
-            return {
-                ...state,
-                creating: false,
-            };
+        //case types.CANCEL_EDIT_PLACE: TODO: Needed? Or use CLEAR_PLACE?
+        case types.CLEAR_PLACE: // TODO: Move to saga?
+            return initialState;
         case types.CHANGE_EDITOR_VIEW:
             return {
                 ...state,

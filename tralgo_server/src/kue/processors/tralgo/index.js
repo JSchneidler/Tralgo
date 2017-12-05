@@ -28,7 +28,7 @@ function init(job_data) {
 	});
 }
 
-function findPath(map, options) {
+function findPath(map, options = {}) {
 	let path = new Path();
 
 	let origin_point;
@@ -63,7 +63,7 @@ function findPath(map, options) {
 		return true;
 	}
 
-	function getConnectedPoints(point, random = false) {
+	function getConnectedPoints(point, random = true) {
 		const connected = [];
 
 		point.getEdges().forEach(edge => {
