@@ -1,5 +1,3 @@
-require('app-module-path').addPath(__dirname + '/src'); // Set relative path root
-
 const path = require('path');
 
 const DB_ROOT = 'src/db';
